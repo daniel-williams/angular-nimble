@@ -1,7 +1,22 @@
 import { Component } from '@angular/core';
 
+import { CoreService } from '../core';
+import { SharedService } from '../shared';
+
 @Component({
-  template: `<div class='card'>Lazy loaded module</div>`,
-  styleUrls: ['./lazy.component.scss']
+  templateUrl: './lazy.component.html',
+  styleUrls: ['./lazy.component.scss'],
+  host: {
+    class: 'card',
+  }
 })
-export class LazyComponent {}
+export class LazyComponent {
+
+  coreCount: number;
+  sharedCount: number;
+
+  constructor(private cs: CoreService, private vs: SharedService) {
+    cs.count.subscribe(x => this.coreCount = x);
+    vs.count.subscribe(x => this.sharedCount = x);
+  }
+}

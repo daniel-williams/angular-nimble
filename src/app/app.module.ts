@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule }  from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core';
 
 import { App } from './app.component';
 import { SiteNav } from './site-nav';
@@ -19,6 +20,7 @@ import { SiteStyles } from './site-styles';
     ReactiveFormsModule,
 
     AppRoutingModule,
+    CoreModule,
   ],
   declarations: [
     App,
