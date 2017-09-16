@@ -4,10 +4,15 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 html, body {
   margin: 0;
   padding: 0;
+  font-family: segoeui;
 }
 
 .card {
   border: 1px solid $border-color;
   border-radius: 12px;
   box-shadow: 4px 4px 8px 0 $shadow-color;
+}
+
+.center {
+  text-align: center;
 }

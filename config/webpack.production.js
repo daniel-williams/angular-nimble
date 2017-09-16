@@ -23,9 +23,9 @@ module.exports = function (options) {
     devtool: 'source-map',
     output: {
       path: helpers.root('dist'),
-      filename: 'assets/bundles/[name].[chunkhash].js',
-      sourceMapFilename: 'assets/bundles/[file].map',
-      chunkFilename: 'assets/bundles/[id].[chunkhash].chunk.js'
+      filename: 'assets/bundles/[name].js',
+      sourceMapFilename: '[file].map',
+      chunkFilename: '[id].[chunkhash].chunk.js'
     },
     plugins: [
       new webpack.NoEmitOnErrorsPlugin(),

@@ -22,8 +22,8 @@ module.exports = function (options) {
     output: {
       path: helpers.root('dist'),
       publicPath: `http://${METADATA.host}:${METADATA.port}/`,
-      filename: '[name].js',
-      chunkFilename: '[id].chunk.js',
+      filename: 'assets/bundles/[name].js',
+      chunkFilename: 'assets/bundles/[id].chunk.js',
       sourceMapFilename: '[file].map',
     },
     plugins: [

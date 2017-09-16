@@ -8,7 +8,6 @@ import { CoreModule } from './core';
 
 import { App } from './app.component';
 import { SiteNav } from './site-nav';
-import { SiteStyles } from './site-styles';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { SiteStyles } from './site-styles';
   declarations: [
     App,
     SiteNav,
-    SiteStyles,
   ],
   providers: []
 })
