@@ -6,7 +6,7 @@ const webpackMerge = require('webpack-merge');
 
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const ENV = process.env.ENV = process.env.NODE_ENV = 'production';
+const ENV = process.env.ENV = process.env.NODE_ENV || 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 const PUBLIC = process.env.PUBLIC_DEV || HOST + ':' + PORT;
