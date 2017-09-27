@@ -4,12 +4,33 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule }  from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { createStore, applyMiddleware, Store } from 'redux'
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { NgReduxRouterModule, NgReduxRouter  } from '@angular-redux/router';
+import { createLogger } from 'redux-logger';
+
+import { default as createSagaMiddleware } from 'redux-saga';
+import { studySagas } from './sagas';
+
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core';
 
 import { App } from './app.component';
+import { AppConstants } from './app.constants';
 import { SiteNav } from './site-nav';
+import { IAppState, rootReducer, StudiesActions } from './store';
 
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
+
+// create the redux logger middleware
+const loggerMiddleware = createLogger();
+
+const store: Store<IAppState> = createStore(
+  rootReducer,
+  {},
+  applyMiddleware(...[sagaMiddleware, loggerMiddleware])
+)
 
 @NgModule({
   bootstrap: [App],
@@ -18,6 +39,8 @@ import { SiteNav } from './site-nav';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+    NgReduxModule,
+    NgReduxRouterModule,
     ReactiveFormsModule,
 
     AppRoutingModule,
@@ -27,6 +50,20 @@ import { SiteNav } from './site-nav';
     App,
     SiteNav,
   ],
-  providers: []
+  providers: [
+    AppConstants,
+    StudiesActions,
+  ]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(
+      private appConstants: AppConstants,
+      private ngRedux: NgRedux<IAppState>,
+      private ngReduxRouter: NgReduxRouter) {
+  
+      this.ngRedux.provideStore(store);
+
+      this.ngReduxRouter.initialize();
+      sagaMiddleware.run(studySagas);
+    }
+}

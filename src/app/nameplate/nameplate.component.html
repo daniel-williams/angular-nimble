@@ -1,4 +1,14 @@
-<div class='stacked'>
-  <h1>Angular Nimble</h1>
-  <img src='/assets/images/angular-es6-webpack-starter.png'>
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <button class='btn btn-primary' type='button' (click)='doFetch($event)'>Sim study fetch</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul>
+        <li *ngFor='let study of studiesState.studyList'>{{ study }}</li>
+      </ul>
+    </div>
+  </div>
 </div>

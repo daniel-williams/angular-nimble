@@ -7,7 +7,7 @@ import { SharedService } from '../shared';
   templateUrl: './lazy.component.html',
   styleUrls: ['./lazy.component.scss'],
   host: {
-    class: 'card',
+    class: 'cardbox',
   }
 })
 export class LazyComponent {
