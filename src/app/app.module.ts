@@ -20,17 +20,6 @@ import { AppConstants } from './app.constants';
 import { SiteNav } from './site-nav';
 import { IAppState, rootReducer, StudiesActions } from './store';
 
-// create the saga middleware
-const sagaMiddleware = createSagaMiddleware();
-
-// create the redux logger middleware
-const loggerMiddleware = createLogger();
-
-const store: Store<IAppState> = createStore(
-  rootReducer,
-  {},
-  applyMiddleware(...[sagaMiddleware, loggerMiddleware])
-)
 
 @NgModule({
   bootstrap: [App],
@@ -60,7 +49,15 @@ export class AppModule {
       private appConstants: AppConstants,
       private ngRedux: NgRedux<IAppState>,
       private ngReduxRouter: NgReduxRouter) {
-  
+
+      const sagaMiddleware = createSagaMiddleware();
+      const loggerMiddleware = appConstants.logRouteChanges ? [createLogger()] : [];
+      const store: Store<IAppState> = createStore(
+        rootReducer,
+        {},
+        applyMiddleware(...[sagaMiddleware, ...loggerMiddleware])
+      )
+
       this.ngRedux.provideStore(store);
 
       this.ngReduxRouter.initialize();
