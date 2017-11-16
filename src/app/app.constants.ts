@@ -10,7 +10,7 @@ const env = {
   debug: 'debug',
 };
 
-const title = 'SAGA | UX Scorecard';
+const title = 'Angular Nimble';
 
 // environment flags
 const logErrors = inEnv([env.debug, env.dev]);
